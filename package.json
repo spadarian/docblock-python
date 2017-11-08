@@ -18,5 +18,5 @@
   },
   "dependencies": {
   },
-  "readme": "# Python DocBlock Package\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)."
+  "readme": "# Python DocBlock Package\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).\n\n![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)"
 }
