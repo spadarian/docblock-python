@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Generate DocBlock",
+        "command": "docblock-python:generate_docblock"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "docblock-python",
+          "submenu": [
+            {
+              "label": "Generate DocBlock",
+              "command": "docblock-python:generate_docblock"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

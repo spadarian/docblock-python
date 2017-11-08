@@ -1,0 +1,22 @@
+{
+  "name": "docblock-python",
+  "main": "./lib/docblock-python",
+  "version": "0.0.0",
+  "description": "Inserts documentation blocks for python functions",
+  "keywords": [
+    "python",
+    "documentation",
+    "autocomplete"
+  ],
+  "activationCommands": {
+    "atom-workspace": "docblock-python:generate_docblock"
+  },
+  "repository": "https://github.com/spadarian/docblock-python",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  },
+  "readme": "# Python DocBlock Package\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)."
+}
