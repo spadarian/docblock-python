@@ -1,7 +1,7 @@
 {
   "name": "docblock-python",
   "main": "./lib/docblock-python",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Inserts documentation blocks for python functions",
   "keywords": [
     "python",
@@ -16,7 +16,6 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "readme": "# Python DocBlock Package\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).\n\n![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)"
 }
