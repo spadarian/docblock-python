@@ -8,9 +8,6 @@
     "documentation",
     "autocomplete"
   ],
-  "activationCommands": {
-    "atom-workspace": "docblock-python:generate_docblock"
-  },
   "repository": "https://github.com/spadarian/docblock-python",
   "license": "MIT",
   "engines": {

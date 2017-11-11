@@ -1,73 +1,91 @@
 'use babel';
 
-import DocblockPython from '../lib/docblock-python';
-
-// Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
-//
-// To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
-// or `fdescribe`). Remove the `f` to unfocus the block.
-
 describe('DocblockPython', () => {
-  let workspaceElement, activationPromise;
+  let workspaceElement, activationPromise, editor, buffer;
 
   beforeEach(() => {
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('docblock-python');
+    filePromise = atom.workspace.open('test.py');
+
+    waitsForPromise(() => {
+      return filePromise;
+    });
+
+    waitsForPromise(() => {
+      return activationPromise;
+    });
+
+    waitsForPromise(() => {
+      return atom.packages.activatePackage('language-python')
+    });
+
   });
 
-  describe('when the docblock-python:toggle event is triggered', () => {
-    it('hides and shows the modal panel', () => {
-      // Before the activation event the view is not on the DOM, and no panel
-      // has been created
-      expect(workspaceElement.querySelector('.docblock-python')).not.toExist();
-
-      // This is an activation event, triggering it will cause the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'docblock-python:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
+  describe('when we click in a line with a function definition', () => {
+    it('inserts the docblock with default settings', () => {
 
       runs(() => {
-        expect(workspaceElement.querySelector('.docblock-python')).toExist();
+        var pos;
 
-        let docblockPythonElement = workspaceElement.querySelector('.docblock-python');
-        expect(docblockPythonElement).toExist();
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        expect(editor.getPath()).toContain('test.py');
 
-        let docblockPythonPanel = atom.workspace.panelForItem(docblockPythonElement);
-        expect(docblockPythonPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'docblock-python:toggle');
-        expect(docblockPythonPanel.isVisible()).toBe(false);
+        editor.moveToBottom()
+        pos = editor.getCursorBufferPosition()
+        expect(pos.row).toBe(2);
+
+        editor.moveToTop();
+        pos = editor.getCursorBufferPosition()
+
+        editor.moveToEndOfLine();
+        editor.selectToBufferPosition(pos);
+        var query = editor.getSelectedText();
+        expect(query).toBe('def function(parameter1, parameter2):');
+
+        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+
+        editor.moveToBottom()
+        pos = editor.getCursorBufferPosition()
+        expect(pos.row).toBe(17);
+
+        editor.moveToTop();
+        editor.moveToBeginningOfLine();
+        editor.moveDown(1);
+        pos = editor.getCursorBufferPosition();
+        editor.moveDown(14);
+        editor.moveToEndOfLine();
+        editor.selectToBufferPosition(pos);
+        var query = editor.getSelectedText();
+
+        expect(query.trim().slice(0, 3)).toBe('"""');
+        expect(query.trim().slice(-3)).toBe('"""');
+        expect(query).toContain('parameter1 : type');
+        expect(query).toContain('parameter2 : type');
+
       });
-    });
+    }),
 
-    it('hides and shows the view', () => {
-      // This test shows you an integration test testing at the view level.
-
-      // Attaching the workspaceElement to the DOM is required to allow the
-      // `toBeVisible()` matchers to work. Anything testing visibility or focus
-      // requires that the workspaceElement is on the DOM. Tests that attach the
-      // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
-
-      expect(workspaceElement.querySelector('.docblock-python')).not.toExist();
-
-      // This is an activation event, triggering it causes the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'docblock-python:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
+    it('inserts the docblock without return description', () => {
 
       runs(() => {
-        // Now we can test for view visibility
-        let docblockPythonElement = workspaceElement.querySelector('.docblock-python');
-        expect(docblockPythonElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'docblock-python:toggle');
-        expect(docblockPythonElement).not.toBeVisible();
+
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        atom.config.set('docblock-python.returns', false);
+        var returns = atom.config.get('docblock-python.returns');
+        expect(returns).toBe(false);
+
+        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+
+        editor.moveToBottom()
+        pos = editor.getCursorBufferPosition()
+        expect(pos.row).toBe(12);
+
       });
-    });
+
+
+    })
   });
 });
