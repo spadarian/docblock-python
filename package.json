@@ -14,5 +14,5 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {},
-  "readme": "# Python DocBlock Package\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).\n\n![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)"
+  "readme": "# Python DocBlock Package\n[![Build Status](https://travis-ci.org/spadarian/docblock-python.svg?branch=master)](https://travis-ci.org/spadarian/docblock-python)\n\nThis is a small package to insert doc string following [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).\n\n![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)"
 }
