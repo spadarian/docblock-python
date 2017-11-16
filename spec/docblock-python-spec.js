@@ -84,8 +84,56 @@ describe('DocblockPython', () => {
         expect(pos.row).toBe(12);
 
       });
+    }),
 
+    it('inserts the docblock with numpy style', () => {
 
+      runs(() => {
+
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        atom.config.set('docblock-python.style', 'numpy');
+        var style = atom.config.get('docblock-python.style');
+        expect(style).toBe('numpy');
+
+        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+
+        editor.moveToTop();
+        editor.moveToBeginningOfLine();
+        pos = editor.getCursorBufferPosition();
+        editor.moveToBottom();
+        editor.moveToEndOfLine();
+        editor.selectToBufferPosition(pos);
+        var query = editor.getSelectedText();
+
+        expect(query).toContain('Parameters\n');
+
+      });
+    })
+
+    it('inserts the docblock with google style', () => {
+
+      runs(() => {
+
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        atom.config.set('docblock-python.style', 'google');
+        var style = atom.config.get('docblock-python.style');
+        expect(style).toBe('google');
+
+        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+
+        editor.moveToTop();
+        editor.moveToBeginningOfLine();
+        pos = editor.getCursorBufferPosition();
+        editor.moveToBottom();
+        editor.moveToEndOfLine();
+        editor.selectToBufferPosition(pos);
+        var query = editor.getSelectedText();
+
+        expect(query).toContain('Args:');
+
+      });
     })
   });
 });
