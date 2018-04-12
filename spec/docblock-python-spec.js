@@ -17,7 +17,7 @@ describe('DocblockPython', () => {
     });
 
     waitsForPromise(() => {
-      return atom.packages.activatePackage('language-python')
+      return atom.packages.activatePackage('language-python') || atom.packages.activatePackage('MagicPython')
     });
 
   });
