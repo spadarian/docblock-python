@@ -22,4 +22,4 @@ This is a non-exhaustive list of future additions. If you have any suggestions, 
 - [x] Add [Google style](http://google.github.io/styleguide/pyguide.html)
 - [ ] Scan for `Exceptions`
 - [ ] Convert between styles
-- [ ] Add support for Type Hints ([PEP 484](https://www.python.org/dev/peps/pep-0484/))
+- [x] Add support for Type Hints ([PEP 484](https://www.python.org/dev/peps/pep-0484/))
