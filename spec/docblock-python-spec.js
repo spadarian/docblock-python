@@ -1,7 +1,7 @@
 'use babel';
 
 describe('DocblockPython', () => {
-  let workspaceElement, activationPromise, editor, buffer;
+  let workspaceElement; let activationPromise; let editor;
 
   beforeEach(() => {
     workspaceElement = atom.views.getView(atom.workspace);
@@ -17,37 +17,38 @@ describe('DocblockPython', () => {
     });
 
     waitsForPromise(() => {
-      return atom.packages.activatePackage('language-python') || atom.packages.activatePackage('MagicPython')
+      return atom.packages.activatePackage('language-python')
+        || atom.packages.activatePackage('MagicPython');
     });
-
   });
 
   describe('when we click in a line with a function definition', () => {
     it('inserts the docblock with default settings', () => {
-
       runs(() => {
-        var pos;
+        let pos;
 
         jasmine.attachToDOM(workspaceElement);
         editor = atom.workspace.getActiveTextEditor();
         expect(editor.getPath()).toContain('test.py');
 
-        editor.moveToBottom()
-        pos = editor.getCursorBufferPosition()
+        editor.moveToBottom();
+        pos = editor.getCursorBufferPosition();
         expect(pos.row).toBe(2);
 
         editor.moveToTop();
-        pos = editor.getCursorBufferPosition()
+        pos = editor.getCursorBufferPosition();
 
         editor.moveToEndOfLine();
         editor.selectToBufferPosition(pos);
-        var query = editor.getSelectedText();
+        let query = editor.getSelectedText();
         expect(query).toBe('def function(parameter1, parameter2):');
 
-        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+        atom.commands.dispatch(
+          workspaceElement, 'docblock-python:generate_docblock'
+        );
 
-        editor.moveToBottom()
-        pos = editor.getCursorBufferPosition()
+        editor.moveToBottom();
+        pos = editor.getCursorBufferPosition();
         expect(pos.row).toBe(17);
 
         editor.moveToTop();
@@ -57,46 +58,44 @@ describe('DocblockPython', () => {
         editor.moveDown(14);
         editor.moveToEndOfLine();
         editor.selectToBufferPosition(pos);
-        var query = editor.getSelectedText();
+        query = editor.getSelectedText();
 
         expect(query.trim().slice(0, 3)).toBe('"""');
         expect(query.trim().slice(-3)).toBe('"""');
         expect(query).toContain('parameter1 : type');
         expect(query).toContain('parameter2 : type');
-
       });
     }),
 
     it('inserts the docblock without return description', () => {
-
       runs(() => {
-
         jasmine.attachToDOM(workspaceElement);
         editor = atom.workspace.getActiveTextEditor();
         atom.config.set('docblock-python.returns', false);
-        var returns = atom.config.get('docblock-python.returns');
+        let returns = atom.config.get('docblock-python.returns');
         expect(returns).toBe(false);
 
-        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+        atom.commands.dispatch(
+          workspaceElement, 'docblock-python:generate_docblock'
+        );
 
-        editor.moveToBottom()
-        pos = editor.getCursorBufferPosition()
+        editor.moveToBottom();
+        pos = editor.getCursorBufferPosition();
         expect(pos.row).toBe(12);
-
       });
     }),
 
     it('inserts the docblock with numpy style', () => {
-
       runs(() => {
-
         jasmine.attachToDOM(workspaceElement);
         editor = atom.workspace.getActiveTextEditor();
         atom.config.set('docblock-python.style', 'numpy');
-        var style = atom.config.get('docblock-python.style');
+        let style = atom.config.get('docblock-python.style');
         expect(style).toBe('numpy');
 
-        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+        atom.commands.dispatch(
+          workspaceElement, 'docblock-python:generate_docblock'
+        );
 
         editor.moveToTop();
         editor.moveToBeginningOfLine();
@@ -104,24 +103,23 @@ describe('DocblockPython', () => {
         editor.moveToBottom();
         editor.moveToEndOfLine();
         editor.selectToBufferPosition(pos);
-        var query = editor.getSelectedText();
+        let query = editor.getSelectedText();
 
         expect(query).toContain('Parameters\n');
-
       });
-    })
+    });
 
     it('inserts the docblock with google style', () => {
-
       runs(() => {
-
         jasmine.attachToDOM(workspaceElement);
         editor = atom.workspace.getActiveTextEditor();
         atom.config.set('docblock-python.style', 'google');
-        var style = atom.config.get('docblock-python.style');
+        let style = atom.config.get('docblock-python.style');
         expect(style).toBe('google');
 
-        atom.commands.dispatch(workspaceElement, 'docblock-python:generate_docblock');
+        atom.commands.dispatch(
+          workspaceElement, 'docblock-python:generate_docblock'
+        );
 
         editor.moveToTop();
         editor.moveToBeginningOfLine();
@@ -129,11 +127,10 @@ describe('DocblockPython', () => {
         editor.moveToBottom();
         editor.moveToEndOfLine();
         editor.selectToBufferPosition(pos);
-        var query = editor.getSelectedText();
+        let query = editor.getSelectedText();
 
         expect(query).toContain('Args:');
-
       });
-    })
+    });
   });
 });
