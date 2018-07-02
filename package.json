@@ -19,6 +19,8 @@
     "eslint-config-google": "^0.9.1"
   },
   "scripts": {
+    "lint": "eslint ./spec/ ./lib/",
+    "pretest": "npm run lint",
     "test": "atom --test ./spec/"
   }
 }
