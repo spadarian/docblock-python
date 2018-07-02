@@ -1,1 +1,28 @@
 extends: google
+env:
+  browser: true
+  commonjs: true
+  es6: true
+  node: true
+  atomtest: true
+parserOptions:
+  ecmaVersion: 9
+  sourceType: module
+rules:
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  padding-line-between-statements:
+    - error
+    - blankLine: always
+      prev: block-like
+      next: block-like
