@@ -9,6 +9,8 @@ parserOptions:
   ecmaVersion: 9
   sourceType: module
 rules:
+  camelcase:
+    - 0
   indent:
     - error
     - 2
