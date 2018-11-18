@@ -25,22 +25,28 @@
     "default": false,
     "order": 3
   },
+  "use_types": {
+    "title": "Show parameter and attribute type",
+    "type": "boolean",
+    "default": true,
+    "order": 4
+  },
   "returns": {
     "title": "Describe returned value",
     "type": "boolean",
     "default": true,
-    "order": 4
+    "order": 5
   },
   "raises": {
     "title": "Describe raised exceptions",
     "type": "boolean",
     "default": false,
-    "order": 5
+    "order": 6
   },
   "examples": {
     "title": "Should illustrate how to use the function/class (doctest)",
     "type": "boolean",
     "default": false,
-    "order": 6
+    "order": 7
   }
 }
