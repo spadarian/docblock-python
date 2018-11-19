@@ -14,12 +14,14 @@ From the command line run `apm install docblock-python`. You can also install it
 
 * Numpy style: [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).
 * Google style: [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html).
+* Sphinx style: [Sphinx documentation](http://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#info-field-lists).
 
 ## TODO
 
 This is a non-exhaustive list of future additions. If you have any suggestions, drop me an email.
 
 - [x] Add [Google style](http://google.github.io/styleguide/pyguide.html)
+- [x] Add [Sphinx style](http://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#info-field-lists)
 - [ ] Scan for `Exceptions`
 - [ ] Convert between styles
 - [x] Add support for Type Hints ([PEP 484](https://www.python.org/dev/peps/pep-0484/))

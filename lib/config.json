@@ -4,8 +4,8 @@
     "type": "string",
     "default": "numpy",
     "order": 0,
-    "enum": ["numpy", "google"],
-    "description": "Currently we support __*numpy*__ style, based on [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt), and __*google*__ style, based on [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html)."
+    "enum": ["numpy", "google", "sphinx"],
+    "description": "Currently we support __*numpy*__ style, based on [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt), __*google*__ style, based on [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html), and __*sphinx*__ style, based on [an example from their documentation](http://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#info-field-lists)."
   },
   "indent": {
     "title": "Initial indent",
