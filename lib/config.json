@@ -25,28 +25,41 @@
     "default": false,
     "order": 3
   },
-  "use_types": {
-    "title": "Show parameter and attribute type",
-    "type": "boolean",
-    "default": true,
-    "order": 4
-  },
   "returns": {
     "title": "Describe returned value",
     "type": "boolean",
     "default": true,
-    "order": 5
+    "order": 4
   },
   "raises": {
     "title": "Describe raised exceptions",
     "type": "boolean",
     "default": false,
-    "order": 6
+    "order": 5
   },
   "examples": {
     "title": "Should illustrate how to use the function/class (doctest)",
     "type": "boolean",
     "default": false,
-    "order": 7
+    "order": 6
+  },
+  "types": {
+    "title": "Parameter and attribute type",
+    "type": "object",
+    "order": 7,
+    "properties": {
+      "use_types": {
+        "title": "Show types",
+        "type": "boolean",
+        "default": true,
+        "order": 0
+      },
+      "separate_types": {
+        "title": "Show types in a different line (sphinx style only)",
+        "type": "boolean",
+        "default": false,
+        "order": 1
+      }
+    }
   }
 }
