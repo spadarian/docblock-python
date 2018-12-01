@@ -13,6 +13,13 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "2.0.0": "provideLinter"
+      }
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "eslint": "^5.0.1",
