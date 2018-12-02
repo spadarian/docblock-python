@@ -16,7 +16,7 @@ In order to this feature to work, you need to install [Linter](https://github.co
 
 ![Lint](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/lint.png)
 
-## Instalation
+## Installation
 
 From the command line run `apm install docblock-python`. You can also install it from the [Atom Package manager](https://flight-manual.atom.io/using-atom/sections/atom-packages/#atom-packages).
 
