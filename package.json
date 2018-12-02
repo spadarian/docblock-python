@@ -21,7 +21,10 @@
       }
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "atom-linter": "^10.0.0",
+    "atom-package-deps": "^4.0.1"
+},
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-config-google": "^0.9.1"
