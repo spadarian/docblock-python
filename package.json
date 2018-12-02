@@ -26,6 +26,9 @@
     "eslint": "^5.0.1",
     "eslint-config-google": "^0.9.1"
   },
+  "package-deps": [
+    "linter"
+  ],
   "scripts": {
     "lint": "eslint ./spec/ ./lib/",
     "pretest": "npm run lint",
