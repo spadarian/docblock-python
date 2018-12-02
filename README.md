@@ -1,11 +1,18 @@
 # Python DocBlock Package
 [![Build Status](https://travis-ci.org/spadarian/docblock-python.svg?branch=master)](https://travis-ci.org/spadarian/docblock-python)
+[![Plugin installs!](https://img.shields.io/apm/dm/docblock-python.svg?style=flat-square&colorB=blue)](https://atom.io/packages/docblock-python)
+[![Package version!](https://img.shields.io/apm/v/docblock-python.svg?style=flat-square&colorB=blue)](https://atom.io/packages/docblock-python)
 
 DocBlock is a package for [Atom](https://atom.io) which helps you to document your python code.
 
 ![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)
 
 ### Lint support
+
+This experimental feature should show you when the documentation is not up-to-date.
+At the moment, it only checks if the current parameters and attributes are documented (not if you are documenting something that doesn't exist).
+
+In order to this feature to work, you need to install [Linter](https://github.com/steelbrain/linter).
 
 ![Lint](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/lint.png)
 

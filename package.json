@@ -6,7 +6,8 @@
   "keywords": [
     "python",
     "documentation",
-    "autocomplete"
+    "autocomplete",
+    "linter"
   ],
   "repository": "https://github.com/spadarian/docblock-python",
   "license": "MIT",
