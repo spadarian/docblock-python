@@ -1,7 +1,7 @@
 {
   "name": "docblock-python",
   "main": "./lib/docblock-python",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "Inserts documentation blocks for python functions",
   "keywords": [
     "python",
@@ -24,7 +24,7 @@
   "dependencies": {
     "atom-linter": "^10.0.0",
     "atom-package-deps": "^4.0.1"
-},
+  },
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-config-google": "^0.9.1"
