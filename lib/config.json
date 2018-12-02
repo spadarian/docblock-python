@@ -61,5 +61,11 @@
         "order": 1
       }
     }
+  },
+  "lint": {
+    "title": "Enable lint to show missing documentation (experimental)",
+    "type": "boolean",
+    "default": false,
+    "order": 8
   }
 }
