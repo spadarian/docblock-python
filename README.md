@@ -5,6 +5,9 @@ DocBlock is a package for [Atom](https://atom.io) which helps you to document yo
 
 ![Demo](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/demo.gif)
 
+### Lint support
+
+![Lint](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/lint.png)
 
 ## Instalation
 
@@ -25,3 +28,4 @@ This is a non-exhaustive list of future additions. If you have any suggestions, 
 - [ ] Scan for `Exceptions`
 - [ ] Convert between styles
 - [x] Add support for Type Hints ([PEP 484](https://www.python.org/dev/peps/pep-0484/))
+- [x] Add lint support to show incomplete documentation
