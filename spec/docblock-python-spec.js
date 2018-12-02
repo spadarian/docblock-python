@@ -11,6 +11,8 @@ let getAllText = function(editor) {
   editor.selectToBufferPosition(pos);
   return editor.getSelectedText();
 };
+let LinterJustSayNoProvider = [];
+console.log(LinterJustSayNoProvider);
 
 describe('DocblockPython', () => {
   let workspaceElement;
@@ -190,6 +192,71 @@ describe('DocblockPython2', () => {
         let query = getAllText(editor);
         expect(query.trim()).toBe(complex_doc.doc.trim());
       });
+    });
+  });
+});
+
+describe('DocblockPythonLint', () => {
+  // let workspaceElement;
+  let editor;
+
+  beforeEach(() => {
+    workspaceElement = atom.views.getView(atom.workspace);
+    filePromise = atom.workspace.open('test.py');
+    activationPromise = atom.packages.activatePackage('linter');
+    activationPromise2 = atom.packages.activatePackage('docblock-python');
+
+    waitsForPromise(() => {
+      return filePromise;
+    });
+
+    waitsForPromise(() => {
+      return activationPromise;
+    });
+
+    waitsForPromise(() => {
+      return activationPromise2;
+    });
+
+    waitsForPromise(() => {
+      return atom.packages.activatePackage('language-python') ||
+      atom.packages.activatePackage('MagicPython');
+    });
+  });
+
+  it('adds a lint warning', () => {
+    editor = atom.workspace.getActiveTextEditor();
+    expect(atom.config.get('docblock-python.lint')).toBe(false);
+    atom.config.set('docblock-python.lint', true);
+    expect(atom.config.get('docblock-python.lint')).toBe(true);
+
+    atom.commands.dispatch(workspaceElement,
+      'docblock-python:generate_docblock');
+
+    let start_pos = {row: 5, column: 0};
+    editor.setCursorBufferPosition({row: 6, column: 0});
+    editor.moveToEndOfLine();
+    editor.selectToBufferPosition(start_pos);
+    editor.delete();
+
+    let all_packs = atom.packages.getLoadedPackages()
+      .map((x) => {
+        return x.name;
+      });
+    expect(all_packs.indexOf('linter')).toBeGreaterThan(-1);
+
+    let pack = atom.packages.getLoadedPackages()
+      .filter((x) => {
+        return x.name === 'docblock-python';
+      })[0];
+    expect(pack.name).toBe('docblock-python');
+
+    expect(editor.getText()).not.toContain('parameter1 :');
+
+    LinterProvider = pack.mainModule.provideLinter();
+    LinterProvider.lint(editor).then((messages) => {
+      expect(messages.length).toBe(1);
+      expect(messages[0].excerpt).toContain('parameter1');
     });
   });
 });
