@@ -12,7 +12,7 @@ DocBlock is a package for [Atom](https://atom.io) which helps you to document yo
 This experimental feature should show you when the documentation is not up-to-date.
 At the moment, it only checks if the current parameters and attributes are documented (not if you are documenting something that doesn't exist).
 
-In order to this feature to work, you need to install [Linter](https://github.com/steelbrain/linter).
+In order to this feature to work, you need to install [Linter](https://github.com/steelbrain/linter) and enable the option in `docblock-python` settings.
 
 ![Lint](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/lint.png)
 
