@@ -19,34 +19,40 @@
     "default": true,
     "order": 2
   },
+  "default_desc_text": {
+    "title": "Show default description text (`Description of...`)",
+    "type": "boolean",
+    "default": true,
+    "order": 3
+  },
   "use_defaults": {
     "title": "Add default value to parameter description",
     "type": "boolean",
     "default": false,
-    "order": 3
+    "order": 4
   },
   "returns": {
     "title": "Describe returned value",
     "type": "boolean",
     "default": true,
-    "order": 4
+    "order": 5
   },
   "raises": {
     "title": "Describe raised exceptions",
     "type": "boolean",
     "default": false,
-    "order": 5
+    "order": 6
   },
   "examples": {
     "title": "Should illustrate how to use the function/class (doctest)",
     "type": "boolean",
     "default": false,
-    "order": 6
+    "order": 7
   },
   "types": {
     "title": "Parameter and attribute type",
     "type": "object",
-    "order": 7,
+    "order": 8,
     "properties": {
       "use_types": {
         "title": "Show types",
@@ -66,6 +72,6 @@
     "title": "Enable lint to show missing documentation (experimental)",
     "type": "boolean",
     "default": false,
-    "order": 8
+    "order": 9
   }
 }
