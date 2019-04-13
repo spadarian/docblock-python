@@ -1,7 +1,7 @@
 {
   "name": "docblock-python",
   "main": "./lib/docblock-python",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "Inserts documentation blocks for python functions",
   "keywords": [
     "python",
