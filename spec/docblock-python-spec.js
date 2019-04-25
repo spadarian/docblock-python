@@ -260,3 +260,66 @@ xdescribe('DocblockPythonLint', () => {
     });
   });
 });
+
+describe('DocblockPythonDataClass', () => {
+  let workspaceElement;
+  let activationPromise;
+  let editor;
+
+  beforeEach(() => {
+    workspaceElement = atom.views.getView(atom.workspace);
+    activationPromise = atom.packages.activatePackage('docblock-python');
+    filePromise = atom.workspace.open('test_dataclass.py');
+
+    waitsForPromise(() => {
+      return filePromise;
+    });
+
+    waitsForPromise(() => {
+      return activationPromise;
+    });
+
+    waitsForPromise(() => {
+      return atom.packages.activatePackage('language-python')
+        || atom.packages.activatePackage('MagicPython');
+    });
+  });
+
+  describe('when the Class is defined as a dataclass', () => {
+    it('inserts the docblock with default settings', () => {
+      runs(() => {
+        let pos;
+
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        expect(editor.getPath()).toContain('test_dataclass.py');
+
+        editor.moveToBottom();
+        pos = editor.getCursorBufferPosition();
+        expect(pos.row).toBe(10);
+
+        editor.moveToTop();
+        editor.moveDown(1);
+        atom.commands.dispatch(workspaceElement,
+          'docblock-python:generate_docblock');
+
+        editor.moveDown(1);
+        editor.moveToBeginningOfLine();
+        pos = editor.getCursorBufferPosition();
+        editor.moveDown(16);
+        editor.moveToEndOfLine();
+        editor.selectToBufferPosition(pos);
+        query = editor.getSelectedText();
+
+        expect(query.trim().slice(0, 3)).toBe('"""');
+        expect(query.trim().slice(-3)).toBe('"""');
+        expect(query).toContain('a : str');
+        expect(query).toContain('b : float');
+        expect(query).toContain('c : int');
+        expect(query).toContain('z : type');
+        expect(query).toContain('Parameters');
+        expect(query).toContain('Attributes');
+      });
+    });
+  });
+});
