@@ -19,40 +19,47 @@
     "default": true,
     "order": 2
   },
+  "quote_type": {
+    "title": "Type of triple quotes to use",
+    "type": "string",
+    "default": "double",
+    "order": 3,
+    "enum": ["double", "single"]
+  },
   "default_desc_text": {
     "title": "Show default description text (`Description of...`)",
     "type": "boolean",
     "default": true,
-    "order": 3
+    "order": 4
   },
   "use_defaults": {
     "title": "Add default value to parameter description",
     "type": "boolean",
     "default": false,
-    "order": 4
+    "order": 5
   },
   "returns": {
     "title": "Describe returned value",
     "type": "boolean",
     "default": true,
-    "order": 5
+    "order": 6
   },
   "raises": {
     "title": "Describe raised exceptions",
     "type": "boolean",
     "default": false,
-    "order": 6
+    "order": 7
   },
   "examples": {
     "title": "Should illustrate how to use the function/class (doctest)",
     "type": "boolean",
     "default": false,
-    "order": 7
+    "order": 8
   },
   "types": {
     "title": "Parameter and attribute type",
     "type": "object",
-    "order": 8,
+    "order": 9,
     "properties": {
       "use_types": {
         "title": "Show types",
@@ -72,6 +79,6 @@
     "title": "Enable lint to show missing documentation (experimental)",
     "type": "boolean",
     "default": false,
-    "order": 9
+    "order": 10
   }
 }

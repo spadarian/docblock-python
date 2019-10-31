@@ -131,8 +131,40 @@ describe('DocblockPython', () => {
 
         expect(query).toContain('Args:');
       });
-    },
-    );
+    }),
+
+    it('inserts the docblock with single triple quotes', () => {
+      runs(() => {
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        atom.config.set('docblock-python.quote_type', 'single');
+        let quote_type = atom.config.get('docblock-python.quote_type');
+        expect(quote_type).toBe('single');
+
+        atom.commands.dispatch(workspaceElement,
+          'docblock-python:generate_docblock');
+
+        let query = getAllText(editor);
+
+        expect(query).toContain('\'\'\'');
+      });
+    }),
+
+    it('inserts the docblock with double triple quotes', () => {
+      runs(() => {
+        jasmine.attachToDOM(workspaceElement);
+        editor = atom.workspace.getActiveTextEditor();
+        let quote_type = atom.config.get('docblock-python.quote_type');
+        expect(quote_type).toBe('double');
+
+        atom.commands.dispatch(workspaceElement,
+          'docblock-python:generate_docblock');
+
+        let query = getAllText(editor);
+
+        expect(query).toContain('"""');
+      });
+    });
   });
 });
 
