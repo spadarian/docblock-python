@@ -228,7 +228,7 @@ describe('DocblockPython2', () => {
   });
 });
 
-xdescribe('DocblockPythonLint', () => {
+describe('DocblockPythonLint', () => {
   // let workspaceElement;
   let editor;
 
