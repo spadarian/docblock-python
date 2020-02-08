@@ -16,6 +16,12 @@ In order to this feature to work, you need to install [Linter](https://github.co
 
 ![Lint](https://raw.githubusercontent.com/spadarian/docblock-python/master/img/lint.png)
 
+### Easily change between styles
+
+Besides being able to select your preferred style from `docblock-python` settings, thanks to [@gonzalezzfelipe](https://github.com/gonzalezzfelipe), you can switch between styles pressing `Alt+Ctrl+S`. This does not change the style of current docblocks, but it is useful when moving between project with different documentation style.
+
+<img src="https://user-images.githubusercontent.com/35146819/73701612-dccc4700-46c8-11ea-8d40-1166a7623a50.gif" width="650", alt="docblock-python-view">
+
 ## Installation
 
 From the command line run `apm install docblock-python`. You can also install it from the [Atom Package manager](https://flight-manual.atom.io/using-atom/sections/atom-packages/#atom-packages).
