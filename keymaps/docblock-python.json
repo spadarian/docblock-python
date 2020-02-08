@@ -1,5 +1,6 @@
 {
   "atom-workspace": {
-    "ctrl-alt-d": "docblock-python:generate_docblock"
+    "ctrl-alt-d": "docblock-python:generate_docblock",
+    "ctrl-alt-s": "docblock-python:choose_style"
   }
 }
