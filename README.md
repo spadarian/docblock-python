@@ -54,8 +54,8 @@ __use_defaults__ | `true` or `false` | Add default value to parameter descriptio
 __returns__ | `true` or `false` | Describe returned value
 __raises__ | `true` or `false` | Describe raised exceptions
 __examples__ | `true` or `false` | Should illustrate how to use the function/class (doctest)
-__types__.use_types | `true` or `false` | Parameter and attribute type
-__types__.separate_types | `true` or `false` | Show types in a different line (sphinx style only)
+__types.use_types__ | `true` or `false` | Parameter and attribute type
+__types.separate_types__ | `true` or `false` | Show types in a different line (sphinx style only)
 __lint__ | `true` or `false` | Enable lint to show missing documentation (experimental)
 
 ## Lint support
