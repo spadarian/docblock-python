@@ -17,6 +17,10 @@
             {
               "label": "Generate DocBlock",
               "command": "docblock-python:generate_docblock"
+            },
+            {
+              "label": "Save current settings",
+              "command": "docblock-python:writeProjectConfig"
             }
           ]
         }

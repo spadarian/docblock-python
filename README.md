@@ -41,6 +41,9 @@ It is possible to set configurations for different projects. You just need to ad
 }
 ```
 
+You can generate the `.docblock.json` file by
+clicking on the `Packages -> docblock-python -> Save current settings` menu.
+
 A full list of the options and their possible values are described below:
 
 Option | Value | Description
@@ -78,3 +81,4 @@ This is a non-exhaustive list of future additions. If you have any suggestions, 
 - [x] Add support for Type Hints ([PEP 484](https://www.python.org/dev/peps/pep-0484/))
 - [x] Add lint support to show incomplete documentation
 - [x] Project configuration file
+- [x] Add menu item to write current settings to config file.
