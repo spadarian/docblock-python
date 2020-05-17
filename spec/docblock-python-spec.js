@@ -1,6 +1,8 @@
 'use babel';
 
-import complex_doc from './fixtures/test2_documented.js';
+import {default as test2_main} from './fixtures/test2_documented.js';
+import {default as classes_main} from './fixtures/test_classes_documented.js';
+classes_main.doc;
 
 let getAllText = function(editor) {
   editor.moveToTop();
@@ -11,8 +13,74 @@ let getAllText = function(editor) {
   editor.selectToBufferPosition(pos);
   return editor.getSelectedText();
 };
-let LinterJustSayNoProvider = [];
-console.log(LinterJustSayNoProvider);
+
+let compareFiles = function(code_path, documented) {
+  editor = atom.workspace.getActiveTextEditor();
+
+  let style = atom.config.get('docblock-python.style');
+  expect(style).toBe('numpy');
+
+  atom.config.set('docblock-python.use_defaults', true);
+  expect(atom.config.get('docblock-python.use_defaults')).toBe(true);
+
+  let g_python = atom.grammars.grammarForId('source.python');
+  expect(g_python.name).toBe('Python');
+
+  expect(editor.getPath()).toContain(code_path);
+
+  editor.moveToBottom();
+  let n_lines = editor.getCursorBufferPosition().row;
+  editor.moveToTop();
+
+  for (let i = 1; i <= n_lines; i++) {
+    editor.addCursorAtBufferPosition({row: i, column: 0});
+  };
+  expect(editor.getCursorBufferPositions().length).toBe(n_lines + 1);
+  workspaceElement = atom.views.getView(atom.workspace);
+
+  editor.setGrammar(g_python);
+  expect(editor.getGrammar().name).toBe('Python');
+
+  atom.commands.dispatch(workspaceElement,
+    'docblock-python:generate_docblock');
+  editor.setCursorBufferPosition({row: 0, column: 0});
+
+  let query = getAllText(editor);
+  expect(query.trim()).toBe(documented.doc.trim());
+};
+
+let test_whole_files = function(code_path, documented) {
+  describe('Test in complex file: ' + code_path, () => {
+    let activationPromise;
+
+    beforeEach(() => {
+      workspaceElement = atom.views.getView(atom.workspace);
+      activationPromise = atom.packages.activatePackage('docblock-python');
+      filePromise = atom.workspace.open(code_path);
+
+      waitsForPromise(() => {
+        return filePromise;
+      });
+
+      waitsForPromise(() => {
+        return activationPromise;
+      });
+
+      waitsForPromise(() => {
+        return atom.packages.activatePackage('language-python') ||
+        atom.packages.activatePackage('MagicPython');
+      });
+    });
+
+    describe('when we try generate documentation for a long file', () => {
+      it('inserts the docblock in ' + code_path, () => {
+        runs(() => {
+          compareFiles(code_path, documented);
+        });
+      });
+    });
+  });
+};
 
 describe('DocblockPython', () => {
   let workspaceElement;
@@ -168,65 +236,8 @@ describe('DocblockPython', () => {
   });
 });
 
-describe('DocblockPython2', () => {
-  let workspaceElement;
-  let activationPromise;
-  let editor;
-
-  beforeEach(() => {
-    workspaceElement = atom.views.getView(atom.workspace);
-    activationPromise = atom.packages.activatePackage('docblock-python');
-    filePromise = atom.workspace.open('test2.py');
-
-    waitsForPromise(() => {
-      return filePromise;
-    });
-
-    waitsForPromise(() => {
-      return activationPromise;
-    });
-
-    waitsForPromise(() => {
-      return atom.packages.activatePackage('language-python') ||
-      atom.packages.activatePackage('MagicPython');
-    });
-  });
-
-  describe('when we click in a line with a function definition', () => {
-    it('inserts the docblock in complex class', () => {
-      runs(() => {
-        editor = atom.workspace.getActiveTextEditor();
-
-        let style = atom.config.get('docblock-python.style');
-        expect(style).toBe('numpy');
-
-        atom.config.set('docblock-python.use_defaults', true);
-        expect(atom.config.get('docblock-python.use_defaults')).toBe(true);
-
-        let g_python = atom.grammars.grammarForId('source.python');
-        expect(g_python.name).toBe('Python');
-
-        expect(editor.getPath()).toContain('test2.py');
-
-        for (let i = 1; i <= 14; i++) {
-          editor.addCursorAtBufferPosition({row: i, column: 0});
-        };
-        expect(editor.getCursorBufferPositions().length).toBe(15);
-        workspaceElement = atom.views.getView(atom.workspace);
-
-        editor.setGrammar(g_python);
-        expect(editor.getGrammar().name).toBe('Python');
-
-        atom.commands.dispatch(workspaceElement,
-          'docblock-python:generate_docblock');
-        editor.setCursorBufferPosition({row: 0, column: 0});
-
-        let query = getAllText(editor);
-        expect(query.trim()).toBe(complex_doc.doc.trim());
-      });
-    });
-  });
-});
+test_whole_files('test2.py', test2_main);
+test_whole_files('test_classes.py', classes_main);
 
 describe('DocblockPythonLint', () => {
   // let workspaceElement;
