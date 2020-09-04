@@ -13,7 +13,7 @@ From the command line run `apm install docblock-python`. You can also install it
 
 ## Available styles
 
-* Numpy style: [A Guide to NumPy/SciPy Documentation](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt).
+* Numpy style: [A Guide to NumPy/SciPy Documentation](https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard).
 * Google style: [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html).
 * Sphinx style: [Sphinx documentation](http://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#info-field-lists).
 * Epytext style: [Epytext documentation](http://epydoc.sourceforge.net/epytext.html).
