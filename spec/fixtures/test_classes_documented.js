@@ -103,5 +103,19 @@ class FF:
         Description of attribute \`attr1\`.
 
     """
-    attr1 = 1`,
+    attr1 = 1
+
+
+class GG:
+    """Short summary."""
+    def __init__(self):
+        """Short summary.
+
+        Returns
+        -------
+        type
+            Description of returned object.
+
+        """
+        pass`,
 };

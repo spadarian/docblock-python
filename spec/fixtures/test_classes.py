@@ -30,3 +30,8 @@ class EE:
 
 class FF:
     attr1 = 1
+
+
+class GG:
+    def __init__(self):
+        pass
